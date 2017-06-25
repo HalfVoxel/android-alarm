@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimaryBackground">#151515</color>
+    <color name="colorAccent">#448aff</color>
+    <color name="itemBackgroundColorPress">#402020</color>
+    <color name="itemBackgroundColor">#515151</color>
+
+    <color name="alarmEnabledButtonColor">#933b3b</color>
+    <color name="alarmDisabledButtonColor">#659335</color>
+</resources>
