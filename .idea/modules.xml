@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Alarm.iml" filepath="$PROJECT_DIR$/Alarm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-alarm.iml" filepath="$PROJECT_DIR$/android-alarm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-alarm.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-alarm.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-alarm.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-alarm.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-alarm.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-alarm.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/android-alarm.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/android-alarm.app.unitTest.iml" />
     </modules>
   </component>
 </project>

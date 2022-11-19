@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion 32
+    buildToolsVersion "32.0.0"
 
     defaultConfig {
         applicationId "com.arongranberg.alarm"
-        minSdkVersion 23
-        targetSdkVersion 24
+        minSdkVersion 32
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
     }
@@ -24,16 +24,14 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.1.1'
-    compile 'com.android.volley:volley:1.0.0'
-    compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation group: 'joda-time', name: 'joda-time', version: '2.9.4'
 
-    compile 'com.android.support:recyclerview-v7:24.1.1'
-    compile 'com.android.support:support-v4:24.1.1'
-    compile "com.daimajia.swipelayout:library:1.2.0@aar"
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 repositories {
     mavenCentral()

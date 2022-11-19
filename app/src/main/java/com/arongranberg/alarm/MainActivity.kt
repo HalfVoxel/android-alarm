@@ -2,8 +2,8 @@ package com.arongranberg.alarm
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.app.Activity
 import com.arongranberg.alarm.R.*
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 
@@ -14,17 +14,17 @@ import org.json.JSONException
 import org.json.JSONObject
 
 import android.os.Handler
-import android.support.v4.graphics.ColorUtils
 import android.view.View
 import android.view.animation.AnimationSet
 import android.widget.*
+//import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.*
 import org.joda.time.*
 import org.joda.time.format.ISODateTimeFormat
 import java.util.*
 import kotlin.concurrent.timerTask
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
     val handler = Handler()
     var timer : Timer = Timer()
     var label: TextView? = null
@@ -104,24 +104,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
 
-        picker = findViewById(id.time_picker) as TimePicker
+        picker = findViewById(id.time_picker)
         picker!!.setIs24HourView(true)
 
-        label = findViewById(id.label) as TextView;
-        progress = findViewById(id.progressBar) as ProgressBar;
+        label = findViewById(id.label);
+        progress = findViewById(id.progressBar);
 
-        startButton = findViewById(id.start) as Button
+        startButton = findViewById(id.start)
         startButton!!.setOnClickListener({ alarmEnabled.value = !alarmEnabled.value })
 
         picker!!.setOnTimeChangedListener { timePicker, i, i1 -> refreshLabel(); dirty() }
         react({ refreshLabel() }, alarmEnabled, lastSyncFailed)
 
-        val alarmTimeLabel = findViewById(id.alarmTimeLabel)
+        val alarmTimeLabel = findViewById<TextView>(id.alarmTimeLabel)
 
         var currentAnimationSet = AnimatorSet()
         react({ previous, current ->
             handler.post {
-                if (currentAnimationSet != null) currentAnimationSet.cancel()
+                currentAnimationSet.cancel()
                 currentAnimationSet = AnimatorSet()
 
                 startButton!!.text = if (current) "Stop Alarm" else "Start Alarm"
@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             }
         }, alarmEnabled)
 
-        react({ previous, current ->
+        react({ _, current ->
             val targetAlpha = if (current == SyncState.Syncing) 1.0f else 0.0f
             progress!!.animate().alpha(targetAlpha)
         }, synced)
@@ -200,7 +200,7 @@ class MainActivity : AppCompatActivity() {
     internal fun refresh() {
         refreshLabel()
 
-        val alarmTimeLabel = findViewById(id.alarmTimeLabel) as TextView
+        val alarmTimeLabel = findViewById<TextView>(id.alarmTimeLabel)
         alarmTimeLabel.text = DateTime.now().toString("HH:mm")
 
         if ((lastSyncedVersion < dirtyVersion || !hasPerformedGetSync.value) && synced.value != SyncState.Syncing && Duration(dirtyingTime, DateTime.now()).millis > 800) {
@@ -251,7 +251,7 @@ class MainActivity : AppCompatActivity() {
 
     internal fun sync(upload : Boolean) {
         val queue = Volley.newRequestQueue(this)
-        val url = "http://home.arongranberg.com:6000/" + (if (upload) "store" else "get")
+        val url = "http://home.arongranberg.com:8030/" + (if (upload) "store" else "get")
 
         val jsonRequest = JSONObject()
 
